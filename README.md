@@ -22,11 +22,33 @@ It's typically used on the backends of LVS(toa enable).
 make
 ```
 
-2. Load the module
+2. Load the module by insmod
 
 ```bash
 insmod ./toa.ko
+cp toa.ko /lib/modules/`uname -r`/kernel/net/netfilter/ipvs/toa.ko
+insmod /lib/modules/`uname -r`/kernel/net/netfilter/ipvs/toa.ko
 ```
+
+3. Load the module by modprobe
+
+```bash
+cp toa.ko /lib/modules/`uname -r`/kernel/net/netfilter/ipvs/toa.ko
+depmod -a
+modprobe toa
+```
+
+4. Autoload
+
+`cat /etc/modules`
+
+##### Now you can append following lines:
+
+```
+toa
+```
+
+reboot
 
 ## Distribution license
 
